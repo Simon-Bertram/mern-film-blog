@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 const Hero = () => {
   return ( 
     <Container>
-      <h1>Film Blog hero</h1>
+      <h1 className='hero-title'>Latest reviews</h1>
     </Container>
    );
 }

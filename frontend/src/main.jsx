@@ -8,10 +8,11 @@ import {
 } from 'react-router-dom'
 import App from './App.jsx'
 import ErrorScreen from './screens/ErrorScreen.jsx'
+import HomeScreen from './screens/HomeScreen.jsx'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.scss'
-import HomeScreen from './screens/HomeScreen.jsx'
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
