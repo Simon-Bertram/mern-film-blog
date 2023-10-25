@@ -37,7 +37,8 @@ header {
 
 .hero-title {
   font-family: 'bangers', sans-serif;
-  font-size: clamp(5rem, 8vw, 10rem);
+  font-size: 9rem;
+  // font-size: clamp(5rem, 8vw, 10rem);
   color: $cyan;
 }
 
