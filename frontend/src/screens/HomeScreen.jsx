@@ -1,8 +1,6 @@
-import Hero from "../components/Hero";
-
 const HomeScreen = () => {
   return ( 
-    <Hero />
+    <h1>Home screen</h1>
    );
 }
  

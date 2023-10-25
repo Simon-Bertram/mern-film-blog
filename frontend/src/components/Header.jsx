@@ -22,58 +22,73 @@ const Header = () => {
     <header>
       <Navbar expand="lg" data-bs-theme="dark">
         <Container>
-          {/* <LinkContainer to="/">
-            <Navbar.Brand href="#home">FilmZilla</Navbar.Brand>
+          {/* <LinkContainer to="/" id='site-branding'>
+            <Navbar.Brand>
+              <h1 className='hero-title'>FilmZilla</h1>
+              <h2>Film reviews</h2>
+            </Navbar.Brand>
           </LinkContainer> */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              { userInfo ? (
-                <>
-                  <NavDropdown title={userInfo.name} id="username">
-                    <LinkContainer to="/profile">
-                      <NavDropdown.Item>
-                        Profile
+              <LinkContainer to="/">
+                <Nav.Link>Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/about">
+                <Nav.Link>About</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/reviews">
+                <Nav.Link>Reviews</Nav.Link>
+              </LinkContainer>
+
+                { userInfo ? (
+                  <>
+                    <NavDropdown title={userInfo.name} id="username">
+                      <LinkContainer to="/profile">
+                        <NavDropdown.Item>
+                          Profile
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Logout
                       </NavDropdown.Item>
+                    </NavDropdown>
+                  </>
+                  ) 
+                  : (
+                  <>
+                    <LinkContainer to="/login">
+                      <Nav.Link><FaSignInAlt /> Login</Nav.Link>
                     </LinkContainer>
-                    <NavDropdown.Item onClick={logoutHandler}>
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </>
-                ) 
-                : (
-                <>
-                  <LinkContainer to="/login">
-                    <Nav.Link><FaSignInAlt /> Login</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/register">
-                    <Nav.Link><FaSignOutAlt /> Sign Up</Nav.Link>
-                  </LinkContainer>
-                </>
-              )}
-              <Form inline style={{ border: "1px solid #32fbe2", borderRadius: "4px" }}>
-                <Row >
-                  {/* <Col xs="auto">
-                    <Form.Control
-                      type="text"
-                      placeholder="Search"
-                      className=" mr-sm-2 search-box"
-                    />
-                  </Col> */}
-                  <Col xs="auto" className='d-flex'>
-                    <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
-                      Search
-                    </Form.Label>
-                    <InputGroup className="mb-2 align-self-center">
-                      <InputGroup.Text className='text-light' style={{ fontSize: "1.5rem", background: "inherit"}}>
-                        <BsSearch />
-                      </InputGroup.Text>
-                      <Form.Control id="inlineFormInputGroup" placeholder="Search" className='text-light' style={{ fontSize: "1.3rem", background: "inherit"}}/>
-                    </InputGroup>
-                  </Col>
-                </Row>
-              </Form>
+                    <LinkContainer to="/register">
+                      <Nav.Link><FaSignOutAlt /> Sign Up</Nav.Link>
+                    </LinkContainer>
+                  </>
+                )}
+                
+                <Form inline style={{ border: "1px solid #32fbe2", borderRadius: "4px" }}>
+                  <Row >
+                    {/* <Col xs="auto">
+                      <Form.Control
+                        type="text"
+                        placeholder="Search"
+                        className=" mr-sm-2 search-box"
+                      />
+                    </Col> */}
+                    <Col xs="auto" className='d-flex'>
+                      <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
+                        Search
+                      </Form.Label>
+                      <InputGroup className="mb-2 align-self-center">
+                        <InputGroup.Text className='text-light' style={{ fontSize: "1.5rem", background: "inherit"}}>
+                          <BsSearch />
+                        </InputGroup.Text>
+                        <Form.Control id="inlineFormInputGroup" placeholder="Search" className='text-light' style={{ fontSize: "1.3rem", background: "inherit"}}/>
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                </Form>
+              
             </Nav>
           </Navbar.Collapse>
         </Container>
