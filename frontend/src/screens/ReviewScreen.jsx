@@ -1,15 +1,26 @@
-import articles from '../articles.js'
-
-// Get value of the articleId parameter from the name
+import reviews from '../reviews.js'
+// Get value of the reviewId parameter from the URL
 import { useParams } from 'react-router-dom'
 
 const ReviewScreen = () => {
   const { reviewId } = useParams();
-  console.log(articleId);
-  const review = review.find((review) => review.name === reviewId);
+  console.log(reviewId);
+  const review = reviews.find((review) => review.name === reviewId);
 
   return ( 
-    <h1>This is the article page for the article with id: {reviewId}</h1>
+    <article className='review'>
+      <section className="review-header">
+        <h1>{review.title}</h1>
+        <p>Published on <time datetime="2023-10-26T08:00:00Z">{review.date}</time></p>
+      </section>
+      <section className="review-body">
+        {review.content.map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        )
+        )}
+      </section>
+    </article>
+    
    );
 }
  

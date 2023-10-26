@@ -94,7 +94,7 @@ const Header = () => {
         </Container>
       </Navbar>
       <div id='hero-content'>
-        <h1 className='hero-title'>FilmZilla</h1>
+        <h1 className='large-title'>FilmZilla</h1>
         <h2>Film reviews</h2>
       </div>
     </header>

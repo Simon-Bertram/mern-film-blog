@@ -1,6 +1,13 @@
+import reviews from "../reviews";
+import { Link } from "react-router-dom";
+import ReviewsList from "../components/ReviewsList";
+
 const ReviewListScreen = () => {
   return ( 
-    <h1>Latest Reviews</h1>
+    <section className="review-list">
+      <h1>Latest Reviews</h1>
+      <ReviewsList reviews={reviews} />
+    </section>
    );
 }
  
