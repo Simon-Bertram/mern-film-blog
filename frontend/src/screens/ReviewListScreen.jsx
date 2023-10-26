@@ -1,5 +1,4 @@
 import reviews from "../reviews";
-import { Link } from "react-router-dom";
 import ReviewsList from "../components/ReviewsList";
 
 const ReviewListScreen = () => {
