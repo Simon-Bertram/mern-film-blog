@@ -1,13 +1,18 @@
 import mongoose from "mongoose";
 
 const commentSchema = mongoose.Schema({
-  text: {
+  comment: {
     type: String,
     required: true
   },
-  user: {
+  postedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    required: true
+  },
+  review: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Review",
     required: true
   },
   upvotes: [{
