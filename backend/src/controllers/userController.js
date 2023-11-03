@@ -28,7 +28,7 @@ const authUser = asyncHandler(async (req, res) => {
 // route   POST /api/users/
 // access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -38,7 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    username: name,
+    username: username,
     email,
     password
   });
@@ -57,16 +57,23 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-  // @desc   Get user profile
+// @desc   Get user profile
 // route   GET /api/users/profile
 // access  Private - jwt required for access
 const getUserProfile = asyncHandler(async (req, res) => {
-  const user = {
-    _id: req.user._id,
-    name: req.user.name,
-    email: req.user.email,
-  };
-  res.status(200).json(user);
+  const user = await User.findById(req.user._id);
+  console.log(user);
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 });
 
 // @desc   Update user profile
@@ -76,7 +83,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
-    user.name = req.body.name || user.name;
+    user.username = req.body.username || user.username;
     user.email = req.body.email || user.email;
 
      if (req.body.password) {
