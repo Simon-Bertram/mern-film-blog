@@ -3,12 +3,10 @@ import {
   addComment,
   upvoteComment,
 } from '../controllers/commentController.js';
-import Comment from '../models/commentModel.js';
+import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/review/addComment', (req, res) => {
-  res.send('Adding comment functionality');
-});
+router.post('/:name/addComment', protect, addComment);
 
 export default router;

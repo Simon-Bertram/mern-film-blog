@@ -13,11 +13,13 @@ const authUser = asyncHandler(async (req, res) => {
   if (user && await user.matchPassword(password)) {
     generateToken(res, user._id);
     res.status(200).json({
-      _id: user._id,
-      username: user.username,
-      email: user.email,
-      isAdmin: user.isAdmin,
+      message: `Welcome ${user.username}`
+      // _id: user._id,
+      // username: user.username,
+      // email: user.email,
+      // isAdmin: user.isAdmin,
     });
+    
   } else {
     res.status(401);
     throw new Error('Invalid email or password');
@@ -62,11 +64,9 @@ const registerUser = asyncHandler(async (req, res) => {
 // access  Private - jwt required for access
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
-  console.log(user);
 
   if (user) {
     res.json({
-      _id: user._id,
       username: user.username,
       email: user.email,
     });

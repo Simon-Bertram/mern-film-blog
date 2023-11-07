@@ -6,6 +6,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
+import commentRoutes from "./routes/commentRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 const PORT = process.env.PORT || 5000;
@@ -24,8 +25,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/reviews/comments', commentRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

@@ -1,13 +1,12 @@
 import asyncHandler from 'express-async-handler';
 import Review from '../models/reviewModel.js';
-import User from '../models/userModel.js';
 
 // @desc   Get a review by name
 // route   GET /api/reviews/:name
 // access  Public
 const getReview = asyncHandler(async (req, res) => {
   const { name } = req.params;
-  const review = await Review.find({ name });
+  const review = await Review.findOne({ name });
   if (review) {
     res.status(200).json(review);
   } else {
@@ -23,6 +22,7 @@ const createReview = asyncHandler(async (req, res) => {
   const review = await Review.create({
     name,
     title,
+    postedBy: req.user._id,
     rating,
     tags,
     content,
@@ -40,7 +40,9 @@ const createReview = asyncHandler(async (req, res) => {
 const upvoteReview = asyncHandler(async (req, res) => {
   try {
     const { name } = req.params;
+    console.log(`Finding review ${name}`);
     const review = await Review.findOne({ name });
+    console.log(`Review found: ${review}`);
 
     if (!review) {
       return res.status(404).json({ message: "Review not found" });
